@@ -9,34 +9,23 @@ import Domain.Enum.TipoSeveridade;
  * @author Leandro
  */
 public class Alarme {
+
+    private Equipamento equipamento;
     private Sensor sensor;
-    private String descricao;
+    private TipoSeveridade severidadade;
+    private TipoEstado estado;
+    private double valorMedido;
+    private double desvio;
+
+    public Alarme(Equipamento equipamento, Sensor sensor, TipoSeveridade severidadade, TipoEstado estado, double valorMedido) {
+        this.equipamento = equipamento;
+        this.sensor = sensor;
+        this.severidadade = severidadade;
+        this.estado = estado;
+        this.valorMedido = valorMedido;
+
+    }
     
-
-    public Alarme(Sensor sensor, String descricao, TipoEstado estado) {
-        this.sensor = sensor;
-        this.descricao = descricao;
-
-
-    }
-
-   
-    public Sensor getSensor() {
-        return sensor;
-    }
-
-    public void setSensor(Sensor sensor) {
-        this.sensor = sensor;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
 
     
 }
