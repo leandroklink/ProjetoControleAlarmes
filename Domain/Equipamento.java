@@ -20,6 +20,22 @@ public class Equipamento {
         this.setor = setor;
         
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public String getSetor() {
+        return setor;
+    }
+
+    public ArrayList<Sensor> getSensores() {
+        return sensores;
+    }
     
 
 

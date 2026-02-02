@@ -27,7 +27,7 @@ public class Sensor {
     public double MedeSensor(double valor){
         if (this.estado.equals(TipoEstado.ATIVO)){
             if (valor < this.limiteMinimo || valor > this.limiteMaximo){
-                if (valor < this.limiteMaximo){
+                if (valor > this.limiteMaximo){
                     return valor - this.limiteMaximo;
                 }else{
                     return this.limiteMinimo - valor;
@@ -41,7 +41,7 @@ public class Sensor {
         }
     }
     
-    
+
     public String getTipo() {
         return tipo;
     }

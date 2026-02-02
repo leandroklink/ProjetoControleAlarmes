@@ -8,26 +8,56 @@ import Domain.Equipamento;
 import java.util.ArrayList;
 
 import Domain.Sensor;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Gerenciador {
     ArrayList<Alarme> alarmes = new ArrayList<>();
 
     public void VerificaSensor(Sensor sensor, double valor){
+        
+        
         double verifica = sensor.MedeSensor(valor);
+        
         if(verifica == 0.0){
-            System.out.printf("Sem alarmes para o sensor: %s", sensor.getTipo());
-        }else if (verifica <= 5){
-            Alarme alarme = new Alarme(sensor.getEquipamento(), sensor.getTipo(), TipoSeveridade.BAIXA, TipoEstado.ATIVO, verifica);
-            alarmes.add(alarme);
-                                 //Equipamento equipamento, Sensor sensor, TipoSeveridade severidadade, TipoEstado estado, double valorMedido
-        }else if (verifica <= 10){
-            Alarme alarme = new Alarme(sensor.getEquipamento(), sensor.getTipo(), TipoSeveridade.MEDIA, TipoEstado.ATIVO, verifica); 
-            alarmes.add(alarme);
-        }else if (verifica <= 20){
-            Alarme alarme = new Alarme(sensor.getEquipamento(), sensor.getTipo(), TipoSeveridade.CRITICA, TipoEstado.ATIVO, verifica);  
-            alarmes.add(alarme);
+            return;
         }
         
-    }
+        double desvio = Math.abs(verifica);//deixa o valor positivo se estiver negativo, e continua positivo se for positivo
+        TipoSeveridade severidade = TipoSeveridade.BAIXA;
+        
 
+        if (desvio <= 5){
+            severidade = TipoSeveridade.BAIXA;
+        }else if (desvio <= 10){
+            severidade = TipoSeveridade.MEDIA;
+        }else{
+            severidade = TipoSeveridade.CRITICA;
+        }
+        Alarme alarme = new Alarme(
+        sensor.getEquipamento(),
+        sensor,
+ severidade,
+        TipoEstado.RECONHECIDO,
+        desvio);
+
+    alarmes.add(alarme);
+    
+    }
+    
+    public void ListarAlarmes(){
+        if (alarmes.isEmpty()){
+            System.out.println("SEM ALARMES.");
+            return;
+        }
+        Collections.sort(alarmes,Comparator.comparing(Alarme::getSeveridadade,Comparator.nullsLast(Comparator.naturalOrder())
+    )
+);
+
+        
+        for(Alarme a : alarmes){
+            System.out.println(a.toString());
+        }
+    }
 }
+

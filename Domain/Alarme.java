@@ -25,7 +25,29 @@ public class Alarme {
         this.valorMedido = valorMedido;
 
     }
+
+    @Override
+    public String toString() {
+        return "\n================================================\nALARME:\nequipamento: " + equipamento.getTipo() + 
+                "\nsensor: " + sensor.getTipo() + 
+                "\nseveridadade: " + this.severidadade +
+                "\nDesvio: " + valorMedido + "\n================================================";
+    }
+
+    public TipoSeveridade getSeveridadade() {
+        return severidadade;
+    }
+
+    public TipoEstado getEstado() {
+        return estado;
+    }
+    
     
 
+    public void setEstado(TipoEstado estado) {
+        this.estado = estado;
+    }
+    
+    
     
 }
