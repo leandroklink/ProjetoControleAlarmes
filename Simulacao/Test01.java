@@ -49,6 +49,9 @@ public class Test01 {
         gerenciador.VerificaSensor(sensor4, 50);   
         gerenciador.VerificaSensor(sensor5, 225);   
         gerenciador.VerificaSensor(sensor5, 380);   
+        gerenciador.VerificaSensor(sensor5, 82);  
+  
+        
         
         
         

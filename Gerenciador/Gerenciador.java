@@ -15,7 +15,7 @@ public class Gerenciador {
     ArrayList<Alarme> alarmes = new ArrayList<>();
 
     public void VerificaSensor(Sensor sensor, double valor){
-        
+        existeAlarmeAtivo(sensor);
         
         double verifica = sensor.MedeSensor(valor);
         
@@ -34,9 +34,8 @@ public class Gerenciador {
         }else{
             severidade = TipoSeveridade.CRITICA;
         }
-        if (existeAlarmeAtivo(sensor)){
-            return;
-        }
+
+
         
         Alarme alarme = new Alarme(
    sensor.getEquipamento(),
@@ -66,6 +65,7 @@ public class Gerenciador {
     private boolean existeAlarmeAtivo(Sensor sensor){
         for (Alarme a : alarmes){
             if (a.getSensor().equals(sensor) && a.getEstado() == TipoEstado.ATIVO){
+                alarmes.remove(a);
                 return true;
             }
         }
