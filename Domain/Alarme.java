@@ -47,6 +47,10 @@ public class Alarme {
     public void setEstado(TipoEstado estado) {
         this.estado = estado;
     }
+
+    public Sensor getSensor() {
+        return sensor;
+    }
     
     
     

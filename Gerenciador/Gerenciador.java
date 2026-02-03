@@ -34,14 +34,18 @@ public class Gerenciador {
         }else{
             severidade = TipoSeveridade.CRITICA;
         }
+        if (existeAlarmeAtivo(sensor)){
+            return;
+        }
+        
         Alarme alarme = new Alarme(
-        sensor.getEquipamento(),
-        sensor,
- severidade,
-        TipoEstado.RECONHECIDO,
-        desvio);
+   sensor.getEquipamento(),
+            sensor,
+  severidade,
+      TipoEstado.ATIVO,
+   desvio);    
 
-    alarmes.add(alarme);
+        alarmes.add(alarme);
     
     }
     
@@ -50,14 +54,22 @@ public class Gerenciador {
             System.out.println("SEM ALARMES.");
             return;
         }
-        Collections.sort(alarmes,Comparator.comparing(Alarme::getSeveridadade,Comparator.nullsLast(Comparator.naturalOrder())
-    )
-);
+        Collections.sort(alarmes,Comparator.comparing(Alarme::getSeveridadade,Comparator.nullsLast(Comparator.naturalOrder())));
 
         
         for(Alarme a : alarmes){
             System.out.println(a.toString());
         }
     }
-}
 
+
+    private boolean existeAlarmeAtivo(Sensor sensor){
+        for (Alarme a : alarmes){
+            if (a.getSensor().equals(sensor) && a.getEstado() == TipoEstado.ATIVO){
+                return true;
+            }
+        }
+        return false;
+    }
+
+}
