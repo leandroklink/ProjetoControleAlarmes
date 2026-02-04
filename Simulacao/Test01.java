@@ -35,6 +35,7 @@ public class Test01 {
         //equipamento e sensor 5
         Equipamento equip5 = new Equipamento(473, "Turbina Gerador de energia 2", "Central Elétrica");
         Sensor sensor5 = new Sensor("Temperatura: Eixo Alta - lado não acoplado",85.0,20.0, TipoEstado.ATIVO, equip5);
+        Sensor sensor5_2 = new Sensor("Temperatura: Eixo Alta - lado acoplado",85.0,20.0, TipoEstado.ATIVO, equip5);
         
 
         
@@ -50,6 +51,7 @@ public class Test01 {
         gerenciador.VerificaSensor(sensor5, 225);   
         gerenciador.VerificaSensor(sensor5, 380);   
         gerenciador.VerificaSensor(sensor5, 82);  
+        gerenciador.VerificaSensor(sensor5_2, 94);
   
         
         

@@ -18,6 +18,7 @@ public class Equipamento {
         this.id = id;
         this.tipo = tipo;
         this.setor = setor;
+
         
     }
 
@@ -36,7 +37,6 @@ public class Equipamento {
     public ArrayList<Sensor> getSensores() {
         return sensores;
     }
-    
 
 
 }

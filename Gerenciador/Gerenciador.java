@@ -13,18 +13,24 @@ import java.util.Comparator;
 
 public class Gerenciador {
     ArrayList<Alarme> alarmes = new ArrayList<>();
-
+ 
+    
+    
     public void VerificaSensor(Sensor sensor, double valor){
-        existeAlarmeAtivo(sensor);
+
         
         double verifica = sensor.MedeSensor(valor);
+        Alarme alarmeAtivo = existeAlarmeAtivo(sensor);
         
         if(verifica == 0.0){
+            if (alarmeAtivo != null){
+                alarmeAtivo.setEstado(TipoEstado.ENCERRADO);
+            }
             return;
         }
         
         double desvio = Math.abs(verifica);//deixa o valor positivo se estiver negativo, e continua positivo se for positivo
-        TipoSeveridade severidade = TipoSeveridade.BAIXA;
+        TipoSeveridade severidade;
         
 
         if (desvio <= 5){
@@ -35,8 +41,15 @@ public class Gerenciador {
             severidade = TipoSeveridade.CRITICA;
         }
 
-
         
+        //caso exista um alarme atualiza
+        if (alarmeAtivo != null){
+            alarmeAtivo.setSeveridade(severidade);
+            alarmeAtivo.setValorMedido(desvio);
+            return;
+        }
+        
+        //caso não exista cria um novo
         Alarme alarme = new Alarme(
    sensor.getEquipamento(),
             sensor,
@@ -62,14 +75,14 @@ public class Gerenciador {
     }
 
 
-    private boolean existeAlarmeAtivo(Sensor sensor){
+    private Alarme existeAlarmeAtivo(Sensor sensor){
         for (Alarme a : alarmes){
             if (a.getSensor().equals(sensor) && a.getEstado() == TipoEstado.ATIVO){
-                alarmes.remove(a);
-                return true;
+                return a;
             }
         }
-        return false;
+        return null;
     }
+    
 
 }

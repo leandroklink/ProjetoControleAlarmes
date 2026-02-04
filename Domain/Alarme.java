@@ -41,8 +41,7 @@ public class Alarme {
     public TipoEstado getEstado() {
         return estado;
     }
-    
-    
+
 
     public void setEstado(TipoEstado estado) {
         this.estado = estado;
@@ -51,6 +50,26 @@ public class Alarme {
     public Sensor getSensor() {
         return sensor;
     }
+
+    public double getValorMedido() {
+        return valorMedido;
+    }
+
+    public double getDesvio() {
+        return desvio;
+    }
+
+    public void setSeveridade(TipoSeveridade severidade) {
+        this.severidadade = severidadade;
+    }
+
+    public void setValorMedido(double desvio) {
+        this.valorMedido = valorMedido;
+    }
+
+
+
+
     
     
     
