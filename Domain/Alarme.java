@@ -34,6 +34,7 @@ public class Alarme {
                 "\nDesvio: " + valorMedido + "\n================================================";
     }
 
+
     public TipoSeveridade getSeveridadade() {
         return severidadade;
     }

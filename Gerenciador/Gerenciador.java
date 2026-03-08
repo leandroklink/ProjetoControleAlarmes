@@ -61,6 +61,8 @@ public class Gerenciador {
     
     }
     
+    
+    
     public void ListarAlarmes(){
         if (alarmes.isEmpty()){
             System.out.println("SEM ALARMES.");

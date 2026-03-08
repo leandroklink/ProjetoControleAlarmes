@@ -14,7 +14,7 @@ import Gerenciador.Gerenciador;
  * @author Leandro
  */
 public class Test01 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         
         //equipamento e sensor 1
         Equipamento equip1 = new Equipamento(29234, "Tanque Pré-Evaporado", "Tratamento de Caldo");
@@ -45,15 +45,26 @@ public class Test01 {
         
         //Funcionando sensores
         gerenciador.VerificaSensor(sensor1, 89);
+        Thread.sleep(2000);
         gerenciador.VerificaSensor(sensor2, 89.5);   
+        Thread.sleep(2000);
         gerenciador.VerificaSensor(sensor3, 5.00);   
+        Thread.sleep(2000);
         gerenciador.VerificaSensor(sensor4, 50);   
+        Thread.sleep(2000);
         gerenciador.VerificaSensor(sensor5, 225);   
+        Thread.sleep(2000);
         gerenciador.VerificaSensor(sensor5, 380);   
+        Thread.sleep(2000);
         gerenciador.VerificaSensor(sensor5, 82);  
+        Thread.sleep(2000);
         gerenciador.VerificaSensor(sensor5_2, 94);
   
-        
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         
         
         
