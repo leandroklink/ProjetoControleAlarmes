@@ -18,8 +18,8 @@ public class Gerenciador {
     
     public void VerificaSensor(Sensor sensor, double valor){
 
-        
-        double verifica = sensor.MedeSensor(valor);
+        sensor.registrarMedicao(valor);
+        double verifica = sensor.MedirSensor(valor);
         Alarme alarmeAtivo = existeAlarmeAtivo(sensor);
         
         if(verifica == 0.0){

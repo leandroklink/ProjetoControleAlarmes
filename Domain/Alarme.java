@@ -31,7 +31,7 @@ public class Alarme {
         return "\n================================================\nALARME:\nequipamento: " + equipamento.getTipo() + 
                 "\nsensor: " + sensor.getTipo() + 
                 "\nseveridadade: " + this.severidadade +
-                "\nDesvio: " + valorMedido + "\n================================================";
+                "\nDesvio: " + valorMedido+ "\n================================================";
     }
 
 

@@ -5,13 +5,6 @@ import Domain.Enum.TipoEstado;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
-/**
- *
- * @author Leandro
- */
 public class Sensor {
     private String tipo; //temperatura, pressao
     private double limiteMaximo;
@@ -32,7 +25,7 @@ public class Sensor {
         this.equipamento = equipamento;
     }
 
-    public double MedeSensor(double valor){
+    public double MedirSensor(double valor){
         if (this.estado.equals(TipoEstado.ATIVO)){
             if (valor < this.limiteMinimo || valor > this.limiteMaximo){
                 if (valor > this.limiteMaximo){
@@ -119,6 +112,11 @@ public class Sensor {
     public void setEquipamento(Equipamento equipamento) {
         this.equipamento = equipamento;
     }
+
+    public List<Medicao> getHistorico() {
+        return List.copyOf(historico);
+    }
+    
     
     
 
