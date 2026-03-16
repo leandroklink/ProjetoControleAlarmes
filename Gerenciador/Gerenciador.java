@@ -61,8 +61,6 @@ public class Gerenciador {
     
     }
     
-    
-    
     public void ListarAlarmes(){
         if (alarmes.isEmpty()){
             System.out.println("SEM ALARMES.");
@@ -75,7 +73,6 @@ public class Gerenciador {
             System.out.println(a.toString());
         }
     }
-
 
     private Alarme existeAlarmeAtivo(Sensor sensor){
         for (Alarme a : alarmes){

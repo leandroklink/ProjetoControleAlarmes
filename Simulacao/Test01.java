@@ -17,6 +17,9 @@ import Gerenciador.Gerenciador;
 public class Test01 {
     public static void main(String[] args) throws InterruptedException {
         
+        //Criação de equipamentos:
+        
+        
         //equipamento e sensor 1
         Equipamento equip1 = new Equipamento(29234, "Tanque Pré-Evaporado", "Tratamento de Caldo");
         Sensor sensor1 = new Sensor("Nível",90.0, 20.0, TipoEstado.ATIVO, equip1);
@@ -44,6 +47,8 @@ public class Test01 {
         Gerenciador gerenciador = new Gerenciador();
         
         
+        //Criando eventos aleatóriamente
+        
         for (int i = 0; i < 20; i++) {
 
             gerenciador.VerificaSensor(sensor1, 80 + Math.random()*20);
@@ -58,10 +63,10 @@ public class Test01 {
 
         
         
-
         
+        System.out.printf("Sensor %s => Equipamento: %s", sensor5.getTipo(), sensor5.toString());
         sensor5.getHistorico().forEach(m -> System.out.println(m.getDataHora() + " - > " + m.getValor()));
-        
+        System.out.println();
         
         try {
             Thread.sleep(1000);
@@ -72,6 +77,6 @@ public class Test01 {
         gerenciador.ListarAlarmes();
         
         
-        
+        GraficoSensor.mostrarGrafico(sensor5);
     }
 }
