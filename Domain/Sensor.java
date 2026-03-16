@@ -109,6 +109,7 @@ public class Sensor {
         return equipamento;
     }
 
+
     public void setEquipamento(Equipamento equipamento) {
         this.equipamento = equipamento;
     }

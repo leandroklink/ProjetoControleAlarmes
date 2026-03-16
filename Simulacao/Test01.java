@@ -64,7 +64,7 @@ public class Test01 {
         
         
         
-        System.out.printf("Sensor %s => Equipamento: %s", sensor5.getTipo(), sensor5.toString());
+        System.out.printf("Sensor %s => Equipamento: %s \n", sensor5.getTipo(), sensor5.getEquipamento().getTipo());
         sensor5.getHistorico().forEach(m -> System.out.println(m.getDataHora() + " - > " + m.getValor()));
         System.out.println();
         

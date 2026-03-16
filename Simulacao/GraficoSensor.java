@@ -14,7 +14,9 @@ public class GraficoSensor {
 
     public static void mostrarGrafico(Sensor sensor) {
 
-        TimeSeries serie = new TimeSeries(sensor.getTipo());
+        TimeSeries serie = new TimeSeries(
+            sensor.getTipo() + " - " + sensor.getEquipamento().getTipo()
+        );
 
         for (Medicao m : sensor.getHistorico()) {
 
