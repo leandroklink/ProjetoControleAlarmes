@@ -1,92 +1,129 @@
-# Sistema de Monitoramento de Sensores e Alarmes
+# Sistema de Monitoramento de Sensores
 
-Projeto em Java que simula um sistema de monitoramento industrial, baseado em
-equipamentos e sensores reais de uma usina.
+Projeto em Java que simula um sistema de monitoramento industrial baseado em equipamentos e sensores.  
+O sistema realiza leitura de sensores, calcula desvios em relação aos limites definidos, gera alarmes e mantém um histórico de medições que pode ser exibido em gráfico.
 
-O sistema avalia leituras de sensores, calcula desvios e gerencia alarmes de
-forma dinâmica, evitando duplicidade e mantendo sempre a severidade correta
-de acordo com o valor atual do processo.
+O objetivo do projeto é praticar conceitos de **Programação Orientada a Objetos**, **processamento de séries temporais** e **simulação de sensores industriais**.
 
 ---
 
-## Objetivo
+## Funcionalidades
 
-- Simular sensores industriais (nível, temperatura, pressão)
-- Associar sensores a equipamentos
-- Avaliar leituras em tempo de execução
-- Criar, atualizar ou remover alarmes automaticamente
-- Evitar alarmes duplicados
-- Atualizar severidade conforme o valor medido
+- Cadastro de **equipamentos**
+- Associação de **sensores** a equipamentos
+- Simulação de leituras de sensores
+- Verificação automática de **desvios de limite**
+- Geração e gerenciamento de **alarmes**
+- Registro de **histórico de medições**
+- Cálculo de estatísticas simples:
+  - média das medições
+  - valor máximo
+  - detecção de tendência de subida
+- Geração de **gráfico do histórico de medições** utilizando JFreeChart
 
 ---
 
 ## Estrutura do Projeto
 
+
+Domain
+├ Equipamento.java
+├ Sensor.java
+├ Medicao.java
+└ Enum
+└ TipoEstado.java
+
+Gerenciador
+└ Gerenciador.java
+
+Simulacao
+├ Test01.java
+└ GraficoSensor.java
+
+
 ### Equipamento
 Representa um equipamento industrial monitorado.
-Contém identificação, nome e setor.
+
+Exemplo:
+- Tanque
+- Gerador
+- Turbina
+- Evaporador
+
+---
 
 ### Sensor
-Representa um sensor ligado a um equipamento.
-Possui:
-- Tipo
-- Valor de referência
-- Tolerância
-- Estado (ATIVO ou INATIVO)
-- Equipamento associado
+Representa um sensor associado a um equipamento.
+
+Cada sensor possui:
+
+- tipo (nível, pressão, temperatura, etc.)
+- limite mínimo
+- limite máximo
+- estado (ativo ou inativo)
+- histórico de medições
+
+O sensor também calcula o **desvio em relação aos limites**.
+
+---
+
+### Medicao
+Representa uma leitura realizada pelo sensor.
+
+Contém:
+
+- valor medido
+- data e hora da medição
+
+Essas medições formam uma **série temporal** utilizada para análise e geração de gráficos.
+
+---
 
 ### Gerenciador
-Classe responsável por:
-- Receber leituras dos sensores
-- Calcular desvio
-- Definir severidade
-- Criar, remover ou atualizar alarmes
-- Listar alarmes ativos
+Responsável por:
 
-### Alarme
-Representa um alarme gerado a partir de um sensor.
-Contém:
-- Equipamento
-- Sensor
-- Severidade
-- Estado
-- Valor medido
+- receber leituras dos sensores
+- registrar medições
+- verificar desvios
+- gerar e listar alarmes
 
 ---
 
-## Lógica de Alarmes
+### Simulação
 
-A cada chamada do método `VerificaSensor`:
+A classe `Test01` executa uma simulação de sensores:
 
-1. O alarme anterior do sensor (se existir) é removido
-2. O valor atual é reavaliado
-3. Um novo alarme é criado com a severidade correta, se necessário
-4. Se o valor estiver dentro do limite, nenhum alarme permanece ativo
+- gera valores aleatórios
+- registra medições
+- verifica alarmes
+- mantém histórico
+- exibe gráfico ao final da execução
 
-Essa abordagem garante que:
-- Não existam alarmes duplicados
-- A severidade possa aumentar ou diminuir
-- Alarmes sejam removidos automaticamente quando a condição normaliza
+Exemplo simplificado:
 
----
 
-## Exemplo de Uso
+for (int i = 0; i < 20; i++) {
 
-A classe `Test01` simula leituras reais:
+gerenciador.VerificaSensor(sensor1, 80 + Math.random()*20);
+gerenciador.VerificaSensor(sensor2, 80 + Math.random()*40);
 
-gerenciador.VerificaSensor(sensor5, 225);
-gerenciador.VerificaSensor(sensor5, 380);
-gerenciador.VerificaSensor(sensor5, 82);
+Thread.sleep(1000);
 
-O mesmo sensor pode gerar alarmes diferentes ao longo do tempo,
-sempre refletindo o estado atual do processo.
+}
+
 
 ---
 
-## Listagem de Alarmes
+## Gráfico de Histórico
 
-Ao final da simulação, o método `ListarAlarmes` exibe apenas os alarmes ativos,
-já ordenados por severidade.
+O projeto utiliza a biblioteca **JFreeChart** para gerar um gráfico de histórico das medições do sensor.
+
+O gráfico utiliza:
+
+- eixo X → tempo
+- eixo Y → valor medido
+
+Isso permite visualizar o comportamento do sensor ao longo da simulação.
 
 ---
 
@@ -94,12 +131,28 @@ já ordenados por severidade.
 
 - Java
 - Programação Orientada a Objetos
-- Enum
-- Collections (ArrayList, Comparator)
+- Java Streams
+- JFreeChart
+- Coleções (`List`, `ArrayList`)
 
 ---
 
-## Observações
+## Possíveis Evoluções do Projeto
 
-Projeto com foco educacional, aplicando conceitos utilizados em sistemas
-industriais de monitoramento, automação e supervisão.
+- simulação de sensores em tempo real
+- exportação de histórico para CSV
+- integração com banco de dados
+- integração com ferramentas de monitoramento (ex: Grafana)
+- geração de dashboards
+- detecção de falhas ou sensores travados
+
+---
+
+## Objetivo Educacional
+
+Este projeto foi desenvolvido com foco em aprendizado, simulando conceitos utilizados em sistemas de:
+
+- monitoramento industrial
+- automação
+- IoT
+- análise de dados de sensores
